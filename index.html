@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muthukkumaran B | Personal Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            
+            --bg-color: #05080f;
+            --text-main: #e2f1f8;
+            --text-muted: #8b9eb3;
+            --accent-1: #00ffcc;
+            --accent-2: #00b3ff;
+            --gradient: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            --card-bg: rgba(0, 255, 204, 0.03);
+            --card-border: rgba(0, 255, 204, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* Animated Background */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: var(--bg-color);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(13, 14, 21, 0.7);
+            border-bottom: 1px solid var(--card-border);
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-main);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 1rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-1);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: slideUp 1s ease forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .greeting {
+            color: var(--accent-1);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: rgba(0, 255, 204, 0.05);
+            color: var(--accent-1);
+            border: 1px solid var(--accent-1);
+            box-shadow: 0 0 10px rgba(0, 255, 204, 0.2), inset 0 0 10px rgba(0, 255, 204, 0.1);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            background: rgba(0, 255, 204, 0.15);
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.4), inset 0 0 15px rgba(0, 255, 204, 0.2);
+            color: #fff;
+        }
+
+        /* Sections common */
+        section {
+            padding: 100px 10%;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60%;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-1);
+        }
+
+        .skill-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .skill-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .skill-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-card:hover .project-title {
+            color: var(--accent-1);
+            transform: translateY(3px);
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        .project-card:hover .project-desc {
+            color: var(--text-main);
+            transform: translateY(2px);
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        .project-img {
+            width: 100%;
+            height: 180px;
+            background: #1a1c29;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--accent-1);
+            overflow: hidden;
+        }
+
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+            filter: brightness(0.9);
+            transition: filter 0.3s ease;
+        }
+
+        .project-card:hover .project-img img {
+            filter: brightness(1);
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 0.8rem;
+            padding: 5px 12px;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--accent-1);
+            border-radius: 15px;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .project-link {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s;
+        }
+
+        .project-link:hover {
+            color: var(--accent-1);
+        }
+
+        /* Contact */
+        .contact-content {
+            display: flex;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .contact-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-text p {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.1rem;
+        }
+
+        .contact-item i {
+            color: var(--accent-1);
+            font-size: 1.5rem;
+        }
+
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            color: var(--text-main);
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-1);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid var(--card-border);
+            margin-top: 50px;
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media(max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            section {
+                padding: 80px 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Animated Background -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">Muthukkumaran B<span>.</span></a>
+        <ul class="nav-links">
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#achievements">Achievements</a></li>
+            <li><a href="#resume">Resume</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <span class="greeting">Hi there, I am</span>
+            <h1>Muthukkumaran B</h1>
+            <h2>Software Developer | Backend Developer | Web App Developer</h2>
+            <p>I build interactive, secure, and highly performant web applications. Passionate about modern web
+                technologies and exploring the depths of cybersecurity to protect digital ecosystems.</p>
+            <a href="#contact" class="btn btn-primary">Let's Talk <i class="fa-solid fa-paper-plane"
+                    style="margin-left: 8px;"></i></a>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" style="padding-top: 50px;">
+        <h2 class="section-title">About Me</h2>
+        <div style="max-width: 800px;">
+            <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px;">
+                First-year Information Technology student with hands-on experience in Java, Python, C++, Data Structures, and Algorithms. 
+                Proficient in web app development. Strong problem-solving skills demonstrated through 50+ solved problems on LeetCode and 
+                HackerRank. Seeking a Software Developer Internship or Frontend Developer Internship to apply algorithmic knowledge, 
+                contribute to scalable software engineering projects, and grow within a high-performing engineering team.
+            </p>
+            <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.8;">
+                Beyond crafting elegant user interfaces, I'm deeply interested in understanding the security mechanisms
+                that protect web ecosystems. I enjoy taking on full-stack challenges, solving complex problems, and
+                constantly learning new technologies in the ever-evolving digital landscape. When I'm not coding, I'm
+                likely researching the latest in cyber threats or exploring new ways to enhance user experiences.
+            </p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <i class="fa-solid fa-code skill-icon"></i>
+                <h3 class="skill-title">Programming Languages</h3>
+                <p class="skill-desc">Proficient in Java, C++, C, and Python for developing robust applications and solving complex problems.</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-solid fa-brain skill-icon"></i>
+                <h3 class="skill-title">Core Concepts</h3>
+                <p class="skill-desc">Strong foundation in Object-Oriented Programming, Time/Space Complexity Analysis, CRUD Operations, REST APIs, and Unit Testing.</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-solid fa-tools skill-icon"></i>
+                <h3 class="skill-title">Tools & Platforms</h3>
+                <p class="skill-desc">Experienced with Git, GitHub, VS Code, and g++ for efficient development and version control.</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-solid fa-shield-halved skill-icon"></i>
+                <h3 class="skill-title">Web Development</h3>
+                <p class="skill-desc">Skilled in building responsive web applications with modern HTML5, CSS3, JavaScript, and backend frameworks.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="section-title">Featured Work</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-img"><i class="fa-solid fa-code"></i></div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">MediaPipe</span>
+                        <span class="tag">OpenCV</span>
+                        <span class="tag">NumPy</span>
+                    </div>
+                    <h3 class="project-title">Air Canva - Virtual Drawing Application</h3>
+                    <p class="project-desc">Developed a gesture-controlled virtual drawing application that allows users to draw on a digital canvas using hand movements captured through a webcam. Implemented real-time hand tracking and finger detection using MediaPipe to recognize gestures for drawing, erasing, and selecting colours.</p>
+                    <a href="#" class="project-link">View Project <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-img"><i class="fa-solid fa-utensils"></i></div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="tag">Full-stack</span>
+                        <span class="tag">Django</span>
+                        <span class="tag">HTML5/CSS3</span>
+                        <span class="tag">JavaScript</span>
+                    </div>
+                    <h3 class="project-title">Platform to Purpose</h3>
+                    <p class="project-desc">Developed a full-stack community web platform that connects users with social resources and support opportunities. Built the backend using Python and Django, implementing dynamic routing, database interaction, and server-side logic. Designed a responsive and accessible front-end using HTML5, CSS3, and JavaScript.</p>
+                    <a href="https://platter-to-purpose.onrender.com/" target="_blank" class="project-link">View Project
+                        <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-img"><i class="fa-solid fa-user"></i></div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="tag">HTML5</span>
+                        <span class="tag">CSS3</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Canvas API</span>
+                    </div>
+                    <h3 class="project-title">Personal Portfolio Website</h3>
+                    <p class="project-desc">Developed a responsive single-page portfolio website to present technical projects, skills, and achievements as an online professional profile. Designed modular sections with smooth scrolling navigation and interactive UI effects using JavaScript and the Canvas API.</p>
+                    <a href="#" class="project-link">View Project <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <h2 class="section-title">Education</h2>
+        <div style="max-width: 800px;">
+            <div style="margin-bottom: 30px;">
+                <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Bachelor of Technology - Information Technology</h3>
+                <p style="color: var(--accent-1); font-weight: 600; margin-bottom: 5px;">Sri Krishna College of Engineering and Technology, India</p>
+                <p style="color: var(--text-muted); margin-bottom: 10px;">2025 - 2029 | SGPA: 9.11 / 10.0</p>
+                <p style="color: var(--text-muted); font-size: 1rem;">Relevant Coursework: Data Structures and Algorithms, Object-Oriented Programming with C++, Discrete Mathematics, Computer Organization and Architecture</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements">
+        <h2 class="section-title">Achievements & Competitive Programming</h2>
+        <div style="max-width: 800px;">
+            <ul style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.8;">
+                <li>Solved 50+ Data Structures and Algorithms problems on LeetCode and HackerRank, covering arrays, linked lists, trees, graphs, dynamic programming, and sorting.</li>
+                <li>Maintained a 30-day consecutive problem-solving streak on LeetCode, logging daily solutions with time and space complexity annotations on GitHub.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications">
+        <h2 class="section-title">Certifications</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+            <div class="project-card" style="max-width: 300px; margin: 0 auto;">
+                <div class="project-img">
+                    <a href="cer1.jpg" target="_blank">
+                        <img src="cer1.jpg" alt="Advanced Diploma in Java Programming Certificate" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
+                    </a>
+                </div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="tag">Java</span>
+                        <span class="tag">Programming</span>
+                    </div>
+                    <h3 class="project-title">Advanced Diploma in Java Programming</h3>
+                    <p class="project-desc">Completed comprehensive training in Java programming fundamentals, object-oriented concepts, and advanced topics at Computer Software College.</p>
+                    <a href="cer1.jpg" target="_blank" class="project-link">View Certificate <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interests Section -->
+    <section id="interests">
+        <h2 class="section-title">Interests</h2>
+        <div style="max-width: 800px;">
+            <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.8;">
+                Competitive Programming | Data Structures and Algorithms | Backend Systems Design | Open-Source Software Development | Low-Level Programming | Distributed Systems | Software Engineering Research | Front End Development
+            </p>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume">
+        <h2 class="section-title">Resume</h2>
+        <div style="text-align: center; margin-top: 30px;">
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 30px;">
+                Interested in learning more about my experience and skills? Grab a copy of my resume below.
+            </p>
+            <a href="Muthukkumaran B.pdf" class="btn btn-primary" download>Download Resume <i class="fa-solid fa-download"
+                    style="margin-left: 8px;"></i></a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-content">
+            <div class="contact-text">
+                <p>I'm currently looking for new opportunities. Whether you have a question, a project idea, or just
+                    want to say hi, I'll try my best to get back to you!</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        <a href="mailto:mailtomuthukkumaranb@gmail.com"
+                            style="color: var(--text-main); text-decoration: none;">mailtomuthukkumaranb@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>Available Worldwide</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-brands fa-linkedin"></i>
+                        <a href="https://www.linkedin.com/in/muthukkumaranb/" target="_blank" style="color: var(--text-main); text-decoration: none;">linkedin.com/in/muthukkumaran-b</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-brands fa-github"></i>
+                        <span>github.com/muthukkumaran</span>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="34906cc5-9033-4a61-bb8a-5ae7c43b2bee">
+                    <div class="form-group">
+                        <input type="text" name="name" class="form-control" placeholder="Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-control" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" class="form-control" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Muthukkumaran B. Built with passion and code.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add blur background to nav on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(13, 14, 21, 0.9)';
+                nav.style.padding = '15px 5%';
+            } else {
+                nav.style.background = 'rgba(13, 14, 21, 0.7)';
+                nav.style.padding = '20px 5%';
+            }
+        });
+
+        // Interactive Canvas Background
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+        const mouse = { x: null, y: null, radius: 120 };
+
+        function initCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', () => {
+            initCanvas();
+            initParticles();
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.x;
+            mouse.y = e.y;
+        });
+
+        window.addEventListener('mouseout', () => {
+            mouse.x = undefined;
+            mouse.y = undefined;
+        });
+
+        class Particle {
+            constructor(x, y, dx, dy, size, color) {
+                this.x = x;
+                this.y = y;
+                this.dx = dx;
+                this.dy = dy;
+                this.size = size;
+                this.color = color;
+                this.baseX = this.x;
+                this.baseY = this.y;
+                this.density = (Math.random() * 30) + 1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+
+            update() {
+                if (mouse.x != null && mouse.y != null) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    let forceDirectionX = dx / distance;
+                    let forceDirectionY = dy / distance;
+                    let force = (mouse.radius - distance) / mouse.radius;
+                    let directionX = forceDirectionX * force * this.density;
+                    let directionY = forceDirectionY * force * this.density;
+
+                    if (distance < mouse.radius) {
+                        this.x -= directionX;
+                        this.y -= directionY;
+                    } else {
+                        if (this.x !== this.baseX) {
+                            let dx = this.x - this.baseX;
+                            this.x -= dx / 15;
+                        }
+                        if (this.y !== this.baseY) {
+                            let dy = this.y - this.baseY;
+                            this.y -= dy / 15;
+                        }
+                    }
+                } else {
+                    if (this.x !== this.baseX) {
+                        let dx = this.x - this.baseX;
+                        this.x -= dx / 15;
+                    }
+                    if (this.y !== this.baseY) {
+                        let dy = this.y - this.baseY;
+                        this.y -= dy / 15;
+                    }
+                }
+
+                this.x += this.dx;
+                this.y += this.dy;
+
+                if (this.x + this.size > width || this.x - this.size < 0) this.dx = -this.dx;
+                if (this.y + this.size > height || this.y - this.size < 0) this.dy = -this.dy;
+
+                this.draw();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            let numberOfParticles = (width * height) / 8000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+                let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+                let dx = (Math.random() - 0.5) * 1;
+                let dy = (Math.random() - 0.5) * 1;
+                let color = Math.random() > 0.5 ? '#00ffcc' : '#00b3ff';
+                particles.push(new Particle(x, y, dx, dy, size, color));
+            }
+        }
+
+        function connect() {
+            let opacityValue = 1;
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a; b < particles.length; b++) {
+                    let distance = ((particles[a].x - particles[b].x) * (particles[a].x - particles[b].x)) +
+                        ((particles[a].y - particles[b].y) * (particles[a].y - particles[b].y));
+                    if (distance < (canvas.width / 7) * (canvas.height / 7)) {
+                        opacityValue = 1 - (distance / 20000);
+                        ctx.strokeStyle = 'rgba(0, 255, 204,' + opacityValue + ')';
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, innerWidth, innerHeight);
+
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+            }
+            connect();
+        }
+
+        initCanvas();
+        initParticles();
+        animate();
+    </script>
+</body>
+
+</html>
