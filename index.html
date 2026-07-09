@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muthukkumaran B | Personal Portfolio</title>
+    <title>Software Development Engineer | Backend Developer | Full-Stack Web Developer</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -425,6 +425,147 @@
             resize: vertical;
         }
 
+        .section-copy {
+            max-width: 800px;
+        }
+
+        .section-copy p,
+        .section-copy li,
+        .section-note {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .info-list {
+            list-style: none;
+            display: grid;
+            gap: 14px;
+        }
+
+        .skill-list {
+            list-style: none;
+            display: grid;
+            gap: 8px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .info-list li {
+            padding-left: 18px;
+            position: relative;
+        }
+
+        .info-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent-1);
+        }
+
+        .experience-card,
+        .hackathon-card,
+        .certificate-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .experience-heading,
+        .hackathon-heading {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .experience-heading h3,
+        .hackathon-heading h3 {
+            font-size: 1.3rem;
+            margin-bottom: 4px;
+        }
+
+        .experience-heading span,
+        .hackathon-meta,
+        .certificate-card p {
+            color: var(--text-muted);
+        }
+
+        .hackathon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .hackathon-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: rgba(0, 255, 204, 0.12);
+            color: var(--accent-1);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .hackathon-actions {
+            margin-top: 18px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .certificate-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-1);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .certificate-link.disabled {
+            color: var(--text-muted);
+            cursor: default;
+        }
+
+        .certificate-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .certificate-placeholder {
+            min-height: 180px;
+            border: 1px dashed var(--card-border);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .certificate-placeholder i {
+            font-size: 2rem;
+            color: var(--accent-1);
+        }
+
+        .certificate-preview {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 16px;
+            border: 1px solid var(--card-border);
+            margin-bottom: 16px;
+        }
+
         /* Footer */
         footer {
             text-align: center;
@@ -464,7 +605,9 @@
             <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#education">Education</a></li>
+            <li><a href="#experience">Experience</a></li>
             <li><a href="#achievements">Achievements</a></li>
+            <li><a href="#hackathons">Hackathons</a></li>
             <li><a href="#resume">Resume</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -478,9 +621,8 @@
         <div class="hero-content">
             <span class="greeting">Hi there, I am</span>
             <h1>Muthukkumaran B</h1>
-            <h2>Software Developer | Backend Developer | Web App Developer</h2>
-            <p>I build interactive, secure, and highly performant web applications. Passionate about modern web
-                technologies and exploring the depths of cybersecurity to protect digital ecosystems.</p>
+            <h2>Software Development Engineer | Backend Developer | Full-Stack Web Developer | Aspiring AI Engineer</h2>
+            <p>I build scalable, practical software systems with a strong focus on backend engineering, real-world product delivery, and thoughtful full-stack implementation.</p>
             <a href="#contact" class="btn btn-primary">Let's Talk <i class="fa-solid fa-paper-plane"
                     style="margin-left: 8px;"></i></a>
         </div>
@@ -489,18 +631,12 @@
     <!-- About Me Section -->
     <section id="about" style="padding-top: 50px;">
         <h2 class="section-title">About Me</h2>
-        <div style="max-width: 800px;">
-            <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px;">
-                First-year Information Technology student with hands-on experience in Java, Python, C++, Data Structures, and Algorithms. 
-                Proficient in web app development. Strong problem-solving skills demonstrated through 50+ solved problems on LeetCode and 
-                HackerRank. Seeking a Software Developer Internship or Frontend Developer Internship to apply algorithmic knowledge, 
-                contribute to scalable software engineering projects, and grow within a high-performing engineering team.
+        <div class="section-copy">
+            <p style="margin-bottom: 20px;">
+                Second-year Information Technology student with strong Data Structures & Algorithms fundamentals (LeetCode, HackerRank) and hands-on backend/full-stack development experience in Python/Django. Built a full-stack modular ERP system spanning 14 business domains and two additional production-style web applications, including LLM and computer-vision integrations, plus hands-on teaching experience as a Technical Trainer Intern. Seeking an SDE, Backend Developer, Full-Stack Developer, or AI Engineering internship/role to build scalable, real-world software.
             </p>
-            <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.8;">
-                Beyond crafting elegant user interfaces, I'm deeply interested in understanding the security mechanisms
-                that protect web ecosystems. I enjoy taking on full-stack challenges, solving complex problems, and
-                constantly learning new technologies in the ever-evolving digital landscape. When I'm not coding, I'm
-                likely researching the latest in cyber threats or exploring new ways to enhance user experiences.
+            <p>
+                I enjoy creating end-to-end products that combine reliable backend systems, accessible interfaces, and thoughtful engineering practices. Whether I am building APIs, implementing business workflows, or mentoring learners, I focus on delivering practical solutions that are scalable and maintainable.
             </p>
         </div>
     </section>
@@ -511,23 +647,51 @@
         <div class="skills-grid">
             <div class="skill-card">
                 <i class="fa-solid fa-code skill-icon"></i>
-                <h3 class="skill-title">Programming Languages</h3>
-                <p class="skill-desc">Proficient in Java, C++, C, and Python for developing robust applications and solving complex problems.</p>
+                <h3 class="skill-title">Languages</h3>
+                <ul class="skill-list">
+                    <li>Java</li>
+                    <li>Python</li>
+                    <li>C++</li>
+                    <li>C</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <i class="fa-solid fa-layer-group skill-icon"></i>
+                <h3 class="skill-title">Frameworks & Libraries</h3>
+                <ul class="skill-list">
+                    <li>Django</li>
+                    <li>HTMX</li>
+                    <li>Alpine.js</li>
+                    <li>Tailwind CSS</li>
+                    <li>OpenCV</li>
+                    <li>MediaPipe</li>
+                    <li>NumPy</li>
+                </ul>
             </div>
             <div class="skill-card">
                 <i class="fa-solid fa-brain skill-icon"></i>
                 <h3 class="skill-title">Core Concepts</h3>
-                <p class="skill-desc">Strong foundation in Object-Oriented Programming, Time/Space Complexity Analysis, CRUD Operations, REST APIs, and Unit Testing.</p>
+                <ul class="skill-list">
+                    <li>Object-Oriented Programming</li>
+                    <li>Data Structures & Algorithms</li>
+                    <li>Time & Space Complexity Analysis</li>
+                    <li>REST APIs</li>
+                    <li>CRUD Operations</li>
+                    <li>Unit Testing</li>
+                </ul>
             </div>
             <div class="skill-card">
                 <i class="fa-solid fa-tools skill-icon"></i>
                 <h3 class="skill-title">Tools & Platforms</h3>
-                <p class="skill-desc">Experienced with Git, GitHub, VS Code, and g++ for efficient development and version control.</p>
-            </div>
-            <div class="skill-card">
-                <i class="fa-solid fa-shield-halved skill-icon"></i>
-                <h3 class="skill-title">Web Development</h3>
-                <p class="skill-desc">Skilled in building responsive web applications with modern HTML5, CSS3, JavaScript, and backend frameworks.</p>
+                <ul class="skill-list">
+                    <li>Git</li>
+                    <li>GitHub</li>
+                    <li>VS Code</li>
+                    <li>SQLite</li>
+                    <li>Celery</li>
+                    <li>Ollama (local LLM)</li>
+                    <li>g++</li>
+                </ul>
             </div>
         </div>
     </section>
@@ -537,7 +701,37 @@
         <h2 class="section-title">Featured Work</h2>
         <div class="projects-grid">
             <div class="project-card">
-                <div class="project-img"><i class="fa-solid fa-code"></i></div>
+                <div class="project-img"><i class="fa-solid fa-layer-group"></i></div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="tag">Django</span>
+                        <span class="tag">HTMX</span>
+                        <span class="tag">Alpine.js</span>
+                        <span class="tag">Tailwind CSS</span>
+                        <span class="tag">SQLite</span>
+                        <span class="tag">Celery</span>
+                    </div>
+                    <h3 class="project-title">Mini ERP System</h3>
+                    <p class="project-desc">Built a full-stack modular ERP web application spanning 14 business domains, including sales, purchasing, inventory, manufacturing, procurement, delivery, foreign trade, and blockchain-based supply chain tracking. Added audit logging, dashboards, and a local Ollama-powered voice assistant.</p>
+                    <a href="https://github.com/muthukkumaranb/minierp" target="_blank" rel="noopener noreferrer" class="project-link">View Project <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-img"><i class="fa-solid fa-utensils"></i></div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="tag">Django</span>
+                        <span class="tag">HTML5</span>
+                        <span class="tag">CSS3</span>
+                        <span class="tag">JavaScript</span>
+                    </div>
+                    <h3 class="project-title">Platter to Purpose</h3>
+                    <p class="project-desc">Developed a full-stack community platform connecting users to social resources, support services, and volunteer opportunities. Implemented authentication, dynamic routing, CRUD workflows, and a responsive, accessibility-compliant front end.</p>
+                    <a href="https://github.com/muthukkumaranb/platter_to_purpose" target="_blank" rel="noopener noreferrer" class="project-link">View Project <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-img"><i class="fa-solid fa-palette"></i></div>
                 <div class="project-content">
                     <div class="project-tags">
                         <span class="tag">Python</span>
@@ -545,87 +739,152 @@
                         <span class="tag">OpenCV</span>
                         <span class="tag">NumPy</span>
                     </div>
-                    <h3 class="project-title">Air Canva - Virtual Drawing Application</h3>
-                    <p class="project-desc">Developed a gesture-controlled virtual drawing application that allows users to draw on a digital canvas using hand movements captured through a webcam. Implemented real-time hand tracking and finger detection using MediaPipe to recognize gestures for drawing, erasing, and selecting colours.</p>
-                    <a href="https://github.com/muthukkumaranb/aircanva.git" target="_blank" class="project-link">View Project <i class="fa-solid fa-arrow-right"></i></a>
+                    <h3 class="project-title">Air Canva — Virtual Drawing Application</h3>
+                    <p class="project-desc">Built a gesture-controlled drawing app that lets users draw on a digital canvas using real-time hand movement captured via webcam. Implemented hand tracking and finger-gesture recognition for drawing, erasing, and colour selection.</p>
+                    <a href="https://github.com/muthukkumaranb/aircanva" target="_blank" rel="noopener noreferrer" class="project-link">View Project <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
-            <div class="project-card">
-                <div class="project-img"><i class="fa-solid fa-utensils"></i></div>
-                <div class="project-content">
-                    <div class="project-tags">
-                        <span class="tag">Full-stack</span>
-                        <span class="tag">Django</span>
-                        <span class="tag">HTML5/CSS3</span>
-                        <span class="tag">JavaScript</span>
-                    </div>
-                    <h3 class="project-title">Platform to Purpose</h3>
-                    <p class="project-desc">Developed a full-stack community web platform that connects users with social resources and support opportunities. Built the backend using Python and Django, implementing dynamic routing, database interaction, and server-side logic. Designed a responsive and accessible front-end using HTML5, CSS3, and JavaScript.</p>
-                    <a href="https://platter-to-purpose.onrender.com/" target="_blank" class="project-link">View Project
-                        <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-img"><i class="fa-solid fa-user"></i></div>
-                <div class="project-content">
-                    <div class="project-tags">
-                        <span class="tag">HTML5</span>
-                        <span class="tag">CSS3</span>
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">Canvas API</span>
-                    </div>
-                    <h3 class="project-title">Personal Portfolio Website</h3>
-                    <p class="project-desc">Developed a responsive single-page portfolio website to present technical projects, skills, and achievements as an online professional profile. Designed modular sections with smooth scrolling navigation and interactive UI effects using JavaScript and the Canvas API.</p>
-                    <a href="https://github.com/muthukkumaranb/portfolio.git" class="project-link">View Project <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-            </div>
-
         </div>
     </section>
 
     <!-- Education Section -->
     <section id="education">
         <h2 class="section-title">Education</h2>
-        <div style="max-width: 800px;">
+        <div class="section-copy">
             <div style="margin-bottom: 30px;">
-                <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Bachelor of Technology - Information Technology</h3>
+                <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Bachelor of Technology — Information Technology, 2025–2029</h3>
                 <p style="color: var(--accent-1); font-weight: 600; margin-bottom: 5px;">Sri Krishna College of Engineering and Technology, India</p>
-                <p style="color: var(--text-muted); margin-bottom: 10px;">2025 - 2029 | SGPA: 9.11 / 10.0</p>
-                <p style="color: var(--text-muted); font-size: 1rem;">Relevant Coursework: Data Structures and Algorithms, Object-Oriented Programming with C++, Discrete Mathematics, Computer Organization and Architecture</p>
+                <p style="color: var(--text-muted); margin-bottom: 10px;">SGPA: 9.05 / 10.0</p>
+                <p style="color: var(--text-muted); font-size: 1rem;">Relevant Coursework: Data Structures and Algorithms, OOP with C++, Discrete Mathematics, Computer Organization and Architecture, Operating Systems</p>
             </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2 class="section-title">Experience</h2>
+        <div class="experience-card">
+            <div class="experience-heading">
+                <h3>Technical Trainer Intern</h3>
+                <span>CSC Computer Education, Erode | Apr 2026 – May 2026</span>
+            </div>
+            <ul class="info-list">
+                <li>Trained 50+ students in Python, C, and C++ through structured technical sessions and hands-on lab exercises.</li>
+                <li>Designed practice problem sets and doubt-clearing sessions that strengthened students' problem-solving fundamentals and coding accuracy.</li>
+                <li>Received a certificate of excellence from the organization for communication and technical delivery.</li>
+            </ul>
         </div>
     </section>
 
     <!-- Achievements Section -->
     <section id="achievements">
         <h2 class="section-title">Achievements & Competitive Programming</h2>
-        <div style="max-width: 800px;">
-            <ul style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.8;">
-                <li>Solved 50+ Data Structures and Algorithms problems on LeetCode and HackerRank, covering arrays, linked lists, trees, graphs, dynamic programming, and sorting.</li>
-                <li>Maintained a 30-day consecutive problem-solving streak on LeetCode, logging daily solutions with time and space complexity annotations on GitHub.</li>
+        <div class="section-copy">
+            <ul class="info-list">
+                <li>Solved Data Structures and Algorithms problems on LeetCode, HackerRank, and other competitive platforms, covering arrays, linked lists, trees, graphs, dynamic programming, and sorting.</li>
+                <li>Competed in 10+ hackathons; reached the final round at the Odoo x KAHE Coimbatore Hackathon, the Hydro Hackathon (Department of Ocean Engineering, IIT Madras), and the Samhita Hackathon (IT Department, Madras Institute of Technology).</li>
+                <li>Student Hackathon Coordinator, B.Tech Information Technology — Sri Krishna College of Engineering and Technology.</li>
             </ul>
+        </div>
+    </section>
+
+    <!-- Hackathons Section -->
+    <section id="hackathons">
+        <h2 class="section-title">Hackathons Participated</h2>
+        <div class="hackathon-grid">
+            <article class="hackathon-card">
+                <div class="hackathon-heading">
+                    <h3>Odoo x KAHE Coimbatore Hackathon</h3>
+                    <span class="hackathon-badge">Finalist</span>
+                </div>
+                <p class="hackathon-meta">Organizer: Odoo & Karpagam Institutions</p>
+                <div class="hackathon-actions">
+                    <a class="certificate-link" href="certificates/odoo-kahe-hackathon.jpeg" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-image"></i> View Certificate</a>
+                </div>
+            </article>
+            <article class="hackathon-card">
+                <div class="hackathon-heading">
+                    <h3>Samhita Hackathon</h3>
+                    <span class="hackathon-badge">Finalist</span>
+                </div>
+                <p class="hackathon-meta">Organizer: IT Department, Madras Institute of Technology</p>
+                <div class="hackathon-actions">
+                    <a class="certificate-link" href="certificates/samhita.jpeg" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-image"></i> View Certificate</a>
+                </div>
+            </article>
+            <article class="hackathon-card">
+                <div class="hackathon-heading">
+                    <h3>Hydro Hackathon</h3>
+                    <span class="hackathon-badge">Finalist</span>
+                </div>
+                <p class="hackathon-meta">Organizer: Department of Ocean Engineering, IIT Madras</p>
+                <div class="hackathon-actions">
+                    <a class="certificate-link" href="certificates/hydro-hackathon.pdf.jpeg" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-image"></i> View Certificate</a>
+                </div>
+            </article>
+            <article class="hackathon-card">
+                <div class="hackathon-heading">
+                    <h3>Sparkathon</h3>
+                    <span class="hackathon-badge">Participant</span>
+                </div>
+                <p class="hackathon-meta">Event: Electra</p>
+                <p class="hackathon-meta">Organizer: EEE Department, CIT</p>
+                <div class="hackathon-actions">
+                    <a class="certificate-link" href="certificates/electra.jpeg" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-image"></i> View Certificate</a>
+                </div>
+            </article>
+            <article class="hackathon-card">
+                <div class="hackathon-heading">
+                    <h3>UIDAI Data Hackathon</h3>
+                    <span class="hackathon-badge">Participant</span>
+                </div>
+                <p class="hackathon-meta">Organizer: UIDAI</p>
+            </article>
+            <article class="hackathon-card">
+                <div class="hackathon-heading">
+                    <h3>Road Safety Hackathon</h3>
+                    <span class="hackathon-badge">Participant</span>
+                </div>
+                <p class="hackathon-meta">Organizer: IIT Madras</p>
+            </article>
+            <article class="hackathon-card">
+                <div class="hackathon-heading">
+                    <h3>Socialis Impulsum</h3>
+                    <span class="hackathon-badge">Participant</span>
+                </div>
+                <p class="hackathon-meta">Organizer: IIT Madras</p>
+                <p class="hackathon-meta">Note: This was an additional event participation and not a competitive hackathon.</p>
+            </article>
         </div>
     </section>
 
     <!-- Certifications Section -->
     <section id="certifications">
-        <h2 class="section-title">Certifications</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
-            <div class="project-card" style="max-width: 300px; margin: 0 auto;">
-                <div class="project-img">
-                    <a href="cer1.jpg" target="_blank">
-                        <img src="cer1.jpg" alt="Advanced Diploma in Java Programming Certificate" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
-                    </a>
-                </div>
-                <div class="project-content">
-                    <div class="project-tags">
-                        <span class="tag">Java</span>
-                        <span class="tag">Programming</span>
-                    </div>
-                    <h3 class="project-title">Advanced Diploma in Java Programming</h3>
-                    <p class="project-desc">Completed comprehensive training in Java programming fundamentals, object-oriented concepts, and advanced topics at Computer Software College.</p>
-                    <a href="cer1.jpg" target="_blank" class="project-link">View Certificate <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
+        <h2 class="section-title">Certificates</h2>
+        <div class="certificate-grid">
+            <div class="certificate-card">
+                <img class="certificate-preview" src="certificates/odoo-kahe-hackathon.jpeg" alt="Odoo x KAHE hackathon certificate">
+                <h3 class="project-title">Odoo x KAHE Coimbatore Hackathon</h3>
+                <p>Certificate uploaded and ready to view.</p>
+                <a href="certificates/odoo-kahe-hackathon.jpeg" target="_blank" rel="noopener noreferrer" class="certificate-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Certificate</a>
+            </div>
+            <div class="certificate-card">
+                <img class="certificate-preview" src="certificates/samhita.jpeg" alt="Samhita hackathon certificate">
+                <h3 class="project-title">Samhita Hackathon</h3>
+                <p>Certificate uploaded and ready to view.</p>
+                <a href="certificates/samhita.jpeg" target="_blank" rel="noopener noreferrer" class="certificate-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Certificate</a>
+            </div>
+            <div class="certificate-card">
+                <img class="certificate-preview" src="certificates/hydro-hackathon.pdf.jpeg" alt="Hydro hackathon certificate">
+                <h3 class="project-title">Hydro Hackathon</h3>
+                <p>Certificate uploaded and ready to view.</p>
+                <a href="certificates/hydro-hackathon.pdf.jpeg" target="_blank" rel="noopener noreferrer" class="certificate-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Certificate</a>
+            </div>
+            <div class="certificate-card">
+                <img class="certificate-preview" src="certificates/electra.jpeg" alt="Electra certificate">
+                <h3 class="project-title">Electra</h3>
+                <p>Certificate uploaded and ready to view.</p>
+                <a href="certificates/electra.jpeg" target="_blank" rel="noopener noreferrer" class="certificate-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Certificate</a>
             </div>
         </div>
     </section>
