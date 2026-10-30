@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://muthukkumaranb.github.io/portfolio/sitemap.xml
+Sitemap: https://muthukkumaranb.is-a.dev/sitemap.xml
